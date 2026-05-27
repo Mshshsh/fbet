@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════════
+   FBET — Global CSS  |  Siyah & Altın Tema
+   ═══════════════════════════════════════ */
+
+:root {
+  --gold:        #c9a84c;
+  --gold-light:  #e8c567;
+  --gold-bright: #ffd700;
+  --gold-dim:    #8a6f2e;
+  --gold-bg:     rgba(201,168,76,0.08);
+  --gold-border: rgba(201,168,76,0.25);
+
+  --bg:          #080808;
+  --bg-2:        #0f0f0f;
+  --bg-3:        #141414;
+  --bg-4:        #1a1a1a;
+  --border:      #242018;
+  --border-2:    #2e2810;
+
+  --text:        #e8dcc8;
+  --text-2:      #a09070;
+  --text-3:      #5a4e38;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { color: inherit; }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* ── Page Container ── */
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-2);
+}
+
+/* ── Gold Divider / Accent Line ── */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border: none;
+  margin: 24px 0;
+  opacity: 0.4;
+}
+
+/* ── Grid Helpers ── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .page-container { padding: 16px 14px; }
+}
+
+/* ── Loading ── */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+/* ── Empty State ── */
+.empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  color: var(--text-2);
+}
+
+.empty-state p { font-size: 14px; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  gap: 4px;
+  letter-spacing: 0.3px;
+}
+
+.badge--success {
+  background: rgba(201,168,76,0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,0.2);
+}
+.badge--danger {
+  background: rgba(200,50,50,0.12);
+  color: #e06060;
+  border: 1px solid rgba(200,50,50,0.2);
+}
+.badge--info {
+  background: rgba(150,130,80,0.12);
+  color: #b8a060;
+  border: 1px solid rgba(150,130,80,0.2);
+}
+.badge--warning {
+  background: rgba(180,140,40,0.12);
+  color: #d4a830;
+  border: 1px solid rgba(180,140,40,0.2);
+}

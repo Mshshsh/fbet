@@ -1,0 +1,27 @@
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+}
+
+.vip-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  pointer-events: none;
+}
+
+.vip-bronz  { border-color: #CD7F32; }
+.vip-gumus  { border-color: #C0C0C0; }
+.vip-altin  { border-color: #FFD700; }
+.vip-platin { border-color: #E5E4E2; }
+.vip-elmas  { border-color: #B9F2FF; }

@@ -1,0 +1,234 @@
+/* ── Chat Widget — Siyah & Altın ── */
+.chat-widget {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  background: #0a0a0a;
+  border: 1px solid #2a2210;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  z-index: 500;
+  box-shadow: 0 -6px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.07);
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.chat-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  cursor: pointer;
+  border-radius: 12px 12px 0 0;
+  background: #0c0b07;
+  border-bottom: 1px solid #2a2210;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Altın üst çizgi */
+.chat-widget__header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  opacity: 0.5;
+  border-radius: 12px 12px 0 0;
+}
+
+.chat-widget__header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-widget__title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #e8dcc8;
+  letter-spacing: 0.5px;
+}
+
+.chat-widget__online {
+  font-size: 11px;
+  color: #c9a84c;
+  font-weight: 500;
+}
+
+.chat-widget__toggle {
+  background: none;
+  border: none;
+  color: #5a4e38;
+  cursor: pointer;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.chat-widget__toggle:hover { color: #c9a84c; }
+
+/* Pinned */
+.chat-pinned {
+  padding: 7px 12px;
+  background: rgba(201,168,76,0.06);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  color: #c9a84c;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Messages */
+.chat-widget__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 0;
+  max-height: 400px;
+}
+
+.chat-empty {
+  text-align: center;
+  color: #5a4e38;
+  font-size: 13px;
+  padding: 24px;
+}
+
+/* Chat Message */
+.chat-message {
+  display: flex;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  align-items: flex-start;
+  transition: background 0.15s;
+}
+
+.chat-message:hover {
+  background: rgba(201,168,76,0.04);
+}
+
+.chat-message__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-message__top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.chat-message__top strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chat-message__time {
+  font-size: 10px;
+  color: #3a3020;
+  margin-left: auto;
+}
+
+.chat-message__text {
+  font-size: 13px;
+  color: #c8b898;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+/* Chat Input */
+.chat-input {
+  border-top: 1px solid #1e1a0e;
+  padding: 8px;
+  flex-shrink: 0;
+  position: relative;
+  background: #0a0a0a;
+}
+
+.chat-input__row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  background: #0f0e08;
+  border: 1px solid #2a2210;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #e8dcc8;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.chat-input input::placeholder { color: #4a3e28; }
+.chat-input input:focus { border-color: rgba(201,168,76,0.4); }
+.chat-input--disabled input { cursor: not-allowed; opacity: 0.4; }
+
+.emoji-btn, .send-btn {
+  background: #141208;
+  border: 1px solid #2a2210;
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #a09070;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.emoji-btn:hover {
+  background: rgba(201,168,76,0.1);
+  color: #c9a84c;
+}
+
+.send-btn {
+  background: linear-gradient(135deg, #8a6820, #c9a84c);
+  border: none;
+  color: #050505;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.send-btn:hover {
+  background: linear-gradient(135deg, #a07830, #e8c567);
+}
+
+.send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.emoji-picker-container {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 8px;
+  right: 8px;
+  z-index: 100;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+}
+
+@media (max-width: 480px) {
+  .chat-widget {
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+    left: 0;
+    right: 0;
+  }
+}

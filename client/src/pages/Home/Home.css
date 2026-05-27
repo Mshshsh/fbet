@@ -1,0 +1,132 @@
+/* ── Home Page — Siyah & Altın ── */
+.home-section { margin-bottom: 44px; }
+
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #e8dcc8;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Başlık yanında ince altın çizgi */
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent);
+  max-width: 200px;
+}
+
+/* ── Partner Cards ── */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+  cursor: pointer;
+  background: #0f0f0f;
+  border: 1px solid #1e1a0e;
+  border-radius: 12px;
+  padding: 18px 14px;
+}
+
+.partner-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 12px rgba(201,168,76,0.07);
+}
+
+.partner-logo {
+  width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+  filter: brightness(0.85);
+  transition: filter 0.2s;
+}
+
+.partner-card:hover .partner-logo { filter: brightness(1); }
+
+.partner-info { text-align: center; }
+
+.partner-info h3 {
+  font-size: 14px;
+  color: #e8dcc8;
+  font-weight: 600;
+}
+
+.partner-bonus {
+  font-size: 12px;
+  color: #c9a84c;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ── Wins Feed ── */
+.wins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.win-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  flex-wrap: wrap;
+  border: 1px solid #1e1a0e;
+  border-radius: 10px;
+  background: #0c0c0a;
+  transition: border-color 0.2s;
+}
+
+.win-item:hover { border-color: rgba(201,168,76,0.2); }
+
+.win-username {
+  font-weight: 600;
+  color: #e8dcc8;
+  font-size: 13px;
+  min-width: 90px;
+}
+
+.win-game {
+  color: #6a5e48;
+  font-size: 13px;
+  flex: 1;
+}
+
+.win-multiplier {
+  color: #c9a84c;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.win-amount {
+  color: #e8c567;
+  font-weight: 700;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+/* ── CMS Content ── */
+.home-cms-content {
+  border: 1px solid #2a2210;
+  background: #0c0c0a;
+}
+
+.home-cms-content img {
+  max-width: 100%;
+  border-radius: 8px;
+}

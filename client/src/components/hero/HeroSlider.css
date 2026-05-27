@@ -1,0 +1,199 @@
+/* ═══════════════════════════════════
+   Hero Slider  —  Siyah & Altın
+   ═══════════════════════════════════ */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 820px;
+  overflow: hidden;
+  background: #050505;
+  user-select: none;
+}
+
+/* ── Slides ── */
+.hero-slider__track {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: scale(1.04);
+  will-change: opacity, transform;
+}
+
+.hero-slide--active {
+  opacity: 1;
+  z-index: 1;
+  transform: scale(1);
+}
+
+/* ── Overlay — siyah+altın gradient ── */
+.hero-slider__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,  rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.45) 55%, rgba(5,5,5,0.15) 100%),
+    linear-gradient(to top,    rgba(5,5,5,0.70) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Content ── */
+.hero-slider__content {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 80px;
+  max-width: 700px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-slider__title {
+  font-size: 40px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  /* Başlıkta altın vurgu */
+  background: linear-gradient(135deg, #fff 60%, #e8c567 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-slider__subtitle {
+  font-size: 16px;
+  color: rgba(232,220,200,0.8);
+  line-height: 1.6;
+  max-width: 540px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+.hero-slider__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #8a6820 0%, #c9a84c 45%, #ffd700 100%);
+  color: #050505;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  align-self: flex-start;
+}
+
+.hero-slider__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.55);
+}
+
+/* ── Arrows ── */
+.hero-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: rgba(5,5,5,0.55);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: #c9a84c;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  padding-bottom: 2px;
+}
+
+.hero-slider__arrow:hover {
+  background: rgba(201,168,76,0.15);
+  border-color: #c9a84c;
+  color: #ffd700;
+}
+
+.hero-slider__arrow--prev { left: 20px; }
+.hero-slider__arrow--next { right: 20px; }
+
+/* ── Dots ── */
+.hero-slider__dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, width 0.25s, border-color 0.25s;
+}
+
+.hero-dot--active {
+  width: 28px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #c9a84c, #ffd700);
+  border-color: transparent;
+}
+
+/* ── Alt kenar altın çizgi ── */
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #c9a84c 25%, #ffd700 50%, #c9a84c 75%, transparent 100%);
+  opacity: 0.6;
+  z-index: 4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-slider { height: 560px; }
+
+  .hero-slider__content {
+    padding: 0 24px;
+    max-width: 100%;
+  }
+
+  .hero-slider__title { font-size: 24px; }
+  .hero-slider__subtitle { font-size: 13px; }
+  .hero-slider__btn { font-size: 13px; padding: 10px 22px; }
+
+  .hero-slider__arrow { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-slider { height: 420px; }
+  .hero-slider__title { font-size: 20px; }
+}

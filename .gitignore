@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+build/
+**/build/
+
+# Database
+server/database.sqlite
+server/*.sqlite
+server/*.sqlite-shm
+server/*.sqlite-wal
+
+# Uploaded files (keep folder, ignore contents)
+server/uploads/*
+!server/uploads/.gitkeep
+!server/uploads/logos.png
+
+# Environment files
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+
+# Misc
+.cache/
