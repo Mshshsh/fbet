@@ -81,6 +81,18 @@ export default function Cark() {
   const canvasRef = useRef(null);
   const rotRef = useRef(0);
   const rafRef = useRef(null);
+  const [canvasSize, setCanvasSize] = useState(420);
+
+  // Responsive canvas size
+  useEffect(() => {
+    const update = () => {
+      const size = Math.min(420, window.innerWidth - 48);
+      setCanvasSize(size);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   const [status, setStatus] = useState(null);
   const [spinning, setSpinning] = useState(false);
@@ -99,7 +111,7 @@ export default function Cark() {
 
   useEffect(() => {
     draw();
-  }, [draw]);
+  }, [draw, canvasSize]);
 
   useEffect(() => {
     if (!user || !token) return;
@@ -220,7 +232,7 @@ export default function Cark() {
           <div className="cark-wheel-wrap">
             {/* Pointer */}
             <div className="cark-pointer" />
-            <canvas ref={canvasRef} width={420} height={420} className="cark-canvas" />
+            <canvas ref={canvasRef} width={canvasSize} height={canvasSize} className="cark-canvas" />
           </div>
 
           {error && <div className="cark-alert cark-alert--error">{error}</div>}

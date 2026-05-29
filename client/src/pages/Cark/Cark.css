@@ -300,7 +300,26 @@
 .cark-login-prompt strong { color: var(--gold); }
 
 @media (max-width: 768px) {
-  .cark-layout { flex-direction: column; align-items: center; }
-  .cark-info-section { width: 100%; max-width: 420px; }
-  .cark-canvas { width: 320px !important; height: 320px !important; }
+  .cark-page { padding-bottom: 20px; }
+
+  .page-header-bar { padding: 24px 16px 20px; }
+  .page-title-text { font-size: 22px; }
+
+  .cark-layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 40px;
+    gap: 24px;
+  }
+
+  .cark-wheel-section { width: 100%; align-items: center; }
+
+  /* Canvas boyutu JS'den geliyor, CSS müdahalesi gerek yok */
+  .cark-canvas { max-width: 100%; }
+
+  .cark-info-section { width: 100%; }
+
+  .cark-code-form { flex-direction: column; }
+  .cark-code-form input,
+  .cark-code-form button { width: 100%; }
 }

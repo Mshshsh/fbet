@@ -20,6 +20,8 @@
   --text:        #e8dcc8;
   --text-2:      #a09070;
   --text-3:      #5a4e38;
+
+  --surface:     #0f0f0f;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -97,6 +99,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 640px) {
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .page-container { padding: 16px 14px; }
+  .page-title { font-size: 20px; }
+}
+
+/* Genel taşma önleme */
+img { max-width: 100%; }
+table { width: 100%; }
+
+/* Mobil tablo kaydırma */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Loading ── */
