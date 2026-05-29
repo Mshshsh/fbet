@@ -15,6 +15,7 @@ const eventsDropdownItems = [
   { to: '/ozeloran',   label: 'Özel Oranlar',        icon: '⚡' },
   { to: '/bonus-buy',   label: 'Bonus Buy',           icon: '💰' },
   { to: '/bonus-hunts', label: 'Bonus Hunt',          icon: '🎰' },
+  { to: '/cark',        label: 'Şans Çarkı',          icon: '🎡' },
 ];
 
 // Dışarı tıklamayı algıla

@@ -4,6 +4,7 @@ const { verifyToken } = require('../middleware/auth.middleware');
 const { requireAdmin, requireMod } = require('../middleware/role.middleware');
 
 router.get('/', verifyToken, requireAdmin, ctrl.listUsers);
+router.get('/profile/:username', ctrl.getProfile);
 router.get('/:id', ctrl.getUser);
 router.put('/me/avatar', verifyToken, ctrl.updateAvatar);
 router.put('/:id/role', verifyToken, requireAdmin, ctrl.setRole);

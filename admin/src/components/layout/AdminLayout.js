@@ -19,6 +19,8 @@ const navItems = [
   { to: '/special-odds', label: '⚡ Özel Oranlar' },
   { to: '/stream', label: '📺 Yayın Ayarı' },
   { to: '/wins', label: '🎉 Kazananlar' },
+  { to: '/point-codes', label: '🎫 Puan Kodları' },
+  { to: '/spin-history', label: '🎡 Çark Geçmişi' },
 ];
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';

@@ -55,4 +55,12 @@ export const getWinsApi = () => api.get('/wins');
 
 // Users
 export const getUserApi = (id) => api.get(`/users/${id}`);
+export const getUserProfileApi = (username) => api.get(`/users/profile/${username}`);
 export const updateAvatarApi = (data) => api.put('/users/me/avatar', data);
+
+// Wheel
+export const getWheelStatusApi = () => api.get('/wheel/status');
+export const spinWheelApi = () => api.post('/wheel/spin');
+
+// Point Codes
+export const redeemCodeApi = (code) => api.post('/point-codes/redeem', { code });

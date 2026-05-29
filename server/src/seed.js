@@ -9,7 +9,7 @@ require('dotenv').config();
 const { connectDB } = require('./config/database');
 const {
   Partner, Page, Task, MarketItem, StreamConfig,
-  WinEntry, SpecialOdd, Tournament, Event, HeroSlide,
+  WinEntry, SpecialOdd, Tournament, Event, HeroSlide, PointCode,
 } = require('./models');
 
 async function seed() {
@@ -158,6 +158,14 @@ async function seed() {
   } else {
     console.log('⏭  Hero slaytlar zaten var');
   }
+
+  // ─────────────── PUAN KODLARI ───────────────
+  const [, codeCreated] = await PointCode.findOrCreate({
+    where: { code: 'HOSGELDIN' },
+    defaults: { code: 'HOSGELDIN', points: 50, maxUses: null, isActive: true },
+  });
+  if (codeCreated) console.log('✅ Hoş geldin kodu oluşturuldu: HOSGELDIN (50 puan)');
+  else console.log('⏭  Puan kodları zaten var');
 
   console.log('\n✨ Seed tamamlandı!');
   process.exit(0);

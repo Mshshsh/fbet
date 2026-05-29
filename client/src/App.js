@@ -22,6 +22,8 @@ import OzelOranlar from './pages/OzelOranlar/OzelOranlar';
 import BonusBuy from './pages/BonusBuy/BonusBuy';
 import BonusHunt from './pages/BonusHunt/BonusHunt';
 import Turnuvalar from './pages/Turnuvalar/Turnuvalar';
+import Cark from './pages/Cark/Cark';
+import Profil from './pages/Profil/Profil';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30000, retry: 1 } },
@@ -50,6 +52,8 @@ function App() {
                 <Route path="/bonus-buy" element={<BonusBuy />} />
                 <Route path="/bonus-hunts" element={<BonusHunt />} />
                 <Route path="/turnuvalar" element={<Turnuvalar />} />
+                <Route path="/cark" element={<Cark />} />
+                <Route path="/profil/:username" element={<Profil />} />
               </Routes>
             </main>
             <ChatWidget />

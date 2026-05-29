@@ -1,5 +1,8 @@
 const User = require('./User');
 const HeroSlide = require('./HeroSlide');
+const SpinHistory = require('./SpinHistory');
+const PointCode = require('./PointCode');
+const CodeRedemption = require('./CodeRedemption');
 const Message = require('./Message');
 const PinnedMessage = require('./PinnedMessage');
 const Partner = require('./Partner');
@@ -18,6 +21,13 @@ const WinEntry = require('./WinEntry');
 // İlişkiler
 User.hasMany(Message, { foreignKey: 'userId', as: 'messages' });
 Message.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(SpinHistory, { foreignKey: 'userId', as: 'spins' });
+SpinHistory.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+PointCode.hasMany(CodeRedemption, { foreignKey: 'codeId', as: 'redemptions' });
+CodeRedemption.belongsTo(PointCode, { foreignKey: 'codeId' });
+CodeRedemption.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
 BonusHuntSession.hasMany(BonusHuntSlot, { foreignKey: 'sessionId', as: 'slots' });
 BonusHuntSlot.belongsTo(BonusHuntSession, { foreignKey: 'sessionId' });
@@ -51,4 +61,7 @@ module.exports = {
   SpecialOdd,
   StreamConfig,
   WinEntry,
+  SpinHistory,
+  PointCode,
+  CodeRedemption,
 };

@@ -71,6 +71,8 @@ app.use('/api/stream', require('./routes/stream.routes'));
 app.use('/api/wins', require('./routes/win.routes'));
 app.use('/api/upload', require('./routes/upload.routes'));
 app.use('/api/hero-slides', require('./routes/heroSlide.routes'));
+app.use('/api/wheel', require('./routes/wheel.routes'));
+app.use('/api/point-codes', require('./routes/pointCode.routes'));
 
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok', time: new Date() }));

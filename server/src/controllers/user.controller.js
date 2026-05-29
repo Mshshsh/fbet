@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, SpinHistory } = require('../models');
 const { success, error } = require('../utils/apiResponse');
 const { getPagination, getPagingData } = require('../utils/paginate');
 
@@ -9,6 +9,23 @@ const getUser = async (req, res) => {
     });
     if (!user) return error(res, 'Kullanıcı bulunamadı.', 404);
     return success(res, user);
+  } catch (err) {
+    return error(res, 'Sunucu hatası.', 500);
+  }
+};
+
+const getProfile = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: { username: req.params.username },
+      attributes: { exclude: ['password', 'email'] },
+    });
+    if (!user) return error(res, 'Kullanıcı bulunamadı.', 404);
+
+    const spinCount = await SpinHistory.count({ where: { userId: user.id } });
+    const totalSpinReward = await SpinHistory.sum('reward', { where: { userId: user.id } }) || 0;
+
+    return success(res, { ...user.toJSON(), spinCount, totalSpinReward });
   } catch (err) {
     return error(res, 'Sunucu hatası.', 500);
   }
@@ -104,4 +121,4 @@ const setVip = async (req, res) => {
   }
 };
 
-module.exports = { getUser, updateAvatar, listUsers, setRole, setBan, setPoints, setVip };
+module.exports = { getUser, getProfile, updateAvatar, listUsers, setRole, setBan, setPoints, setVip };
