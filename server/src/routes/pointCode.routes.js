@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const auth = require('../middleware/auth.middleware');
-const role = require('../middleware/role.middleware');
+const { verifyToken } = require('../middleware/auth.middleware');
+const { requireAdmin } = require('../middleware/role.middleware');
 const { list, create, toggle, remove, redeem } = require('../controllers/pointCode.controller');
 
-router.get('/', auth, role('admin', 'moderator'), list);
-router.post('/', auth, role('admin', 'moderator'), create);
-router.put('/:id/toggle', auth, role('admin', 'moderator'), toggle);
-router.delete('/:id', auth, role('admin', 'moderator'), remove);
-router.post('/redeem', auth, redeem);
+router.get('/', verifyToken, requireAdmin, list);
+router.post('/', verifyToken, requireAdmin, create);
+router.put('/:id/toggle', verifyToken, requireAdmin, toggle);
+router.delete('/:id', verifyToken, requireAdmin, remove);
+router.post('/redeem', verifyToken, redeem);
 
 module.exports = router;
