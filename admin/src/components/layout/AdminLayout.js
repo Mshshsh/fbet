@@ -19,7 +19,8 @@ const navItems = [
   { to: '/special-odds', label: '⚡ Özel Oranlar' },
   { to: '/stream', label: '📺 Yayın Ayarı' },
   { to: '/wins', label: '🎉 Kazananlar' },
-  { to: '/point-codes', label: '🎫 Puan Kodları' },
+  { to: '/point-codes',  label: '🎫 Puan Kodları' },
+  { to: '/wheel-config', label: '⚙️ Çark Ayarları' },
   { to: '/spin-history', label: '🎡 Çark Geçmişi' },
 ];
 

@@ -25,6 +25,7 @@ import Wins from './pages/Wins/Wins';
 import HeroSlides from './pages/HeroSlides/HeroSlides';
 import PointCodes from './pages/PointCodes/PointCodes';
 import SpinHistory from './pages/SpinHistory/SpinHistory';
+import WheelConfig from './pages/WheelConfig/WheelConfig';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30000, retry: 1 } },
@@ -69,6 +70,7 @@ function AppRoutes() {
           <Route path="hero-slides" element={<HeroSlides />} />
           <Route path="point-codes" element={<PointCodes />} />
           <Route path="spin-history" element={<SpinHistory />} />
+          <Route path="wheel-config" element={<WheelConfig />} />
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>

@@ -4,7 +4,8 @@ import './Cark.css';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-const SEGMENTS = [
+// Segmentler artık API'den geliyor — bu sadece yükleme sırasında fallback
+const DEFAULT_SEGMENTS = [
   { label: '10',  points: 10,  color: '#2a2008', textColor: '#c9a84c' },
   { label: '100', points: 100, color: '#5a3d10', textColor: '#ffd700' },
   { label: '25',  points: 25,  color: '#1e1608', textColor: '#c9a84c' },
@@ -15,9 +16,7 @@ const SEGMENTS = [
   { label: '200', points: 200, color: '#c9a84c', textColor: '#080808' },
 ];
 
-const SEGMENT_ANGLE = 360 / SEGMENTS.length;
-
-function drawWheel(canvas, rotation) {
+function drawWheel(canvas, rotation, segments) {
   const ctx = canvas.getContext('2d');
   const size = canvas.width;
   const cx = size / 2;
@@ -26,9 +25,10 @@ function drawWheel(canvas, rotation) {
 
   ctx.clearRect(0, 0, size, size);
 
-  SEGMENTS.forEach((seg, i) => {
-    const startAngle = ((i * SEGMENT_ANGLE - 90 + rotation) * Math.PI) / 180;
-    const endAngle = (((i + 1) * SEGMENT_ANGLE - 90 + rotation) * Math.PI) / 180;
+  const segAngle = 360 / segments.length;
+  segments.forEach((seg, i) => {
+    const startAngle = ((i * segAngle - 90 + rotation) * Math.PI) / 180;
+    const endAngle = (((i + 1) * segAngle - 90 + rotation) * Math.PI) / 180;
 
     // Dilim
     ctx.beginPath();
@@ -44,7 +44,7 @@ function drawWheel(canvas, rotation) {
     // Metin
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.rotate(startAngle + (SEGMENT_ANGLE * Math.PI) / 180 / 2);
+    ctx.rotate(startAngle + (segAngle * Math.PI) / 180 / 2);
     ctx.textAlign = 'right';
     ctx.fillStyle = seg.textColor;
     ctx.font = `bold ${size * 0.055}px "Segoe UI", sans-serif`;
@@ -105,8 +105,10 @@ export default function Cark() {
   // Countdown state
   const [countdown, setCountdown] = useState('');
 
+  const segmentsRef = useRef(DEFAULT_SEGMENTS);
+
   const draw = useCallback(() => {
-    if (canvasRef.current) drawWheel(canvasRef.current, rotRef.current);
+    if (canvasRef.current) drawWheel(canvasRef.current, rotRef.current, segmentsRef.current);
   }, []);
 
   useEffect(() => {
@@ -114,11 +116,23 @@ export default function Cark() {
   }, [draw, canvasSize]);
 
   useEffect(() => {
-    if (!user || !token) return;
+    if (!user || !token) {
+      // Giriş yoksa varsayılan çarkı göster
+      drawWheel(canvasRef.current, 0, DEFAULT_SEGMENTS);
+      return;
+    }
     fetch(`${API_BASE}/api/wheel/status`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
-      .then(d => { if (d.success) setStatus(d.data); });
-  }, [user, token]);
+      .then(d => {
+        if (d.success) {
+          setStatus(d.data);
+          if (d.data.segments?.length) {
+            segmentsRef.current = d.data.segments;
+            draw();
+          }
+        }
+      });
+  }, [user, token, draw]);
 
   // Countdown timer
   useEffect(() => {
@@ -160,9 +174,9 @@ export default function Cark() {
 
       const { segmentIndex, reward, nextSpin, totalPoints } = data.data;
 
-      // Çark animasyonu: hedef segment üste gelecek şekilde döndür
-      // Segment 0 başlangıçta -90°'de. Hedef segment'i 0°'ye (üst) taşıyacağız.
-      const targetAngle = -(segmentIndex * SEGMENT_ANGLE + SEGMENT_ANGLE / 2);
+      const segCount = segmentsRef.current.length;
+      const segAngle = 360 / segCount;
+      const targetAngle = -(segmentIndex * segAngle + segAngle / 2);
       const currentRot = rotRef.current % 360;
       const totalRotation = 360 * 8 + targetAngle - currentRot;
 
@@ -268,7 +282,8 @@ export default function Cark() {
           <div className="cark-info-card">
             <h3>Ödüller</h3>
             <div className="cark-prizes">
-              {SEGMENTS.filter((s, i, arr) => arr.findIndex(x => x.points === s.points) === i)
+              {(status?.segments || DEFAULT_SEGMENTS)
+                .filter((s, i, arr) => arr.findIndex(x => x.points === s.points) === i)
                 .sort((a, b) => a.points - b.points)
                 .map(seg => (
                   <div key={seg.points} className="cark-prize-row">

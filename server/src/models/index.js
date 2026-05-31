@@ -3,6 +3,7 @@ const HeroSlide = require('./HeroSlide');
 const SpinHistory = require('./SpinHistory');
 const PointCode = require('./PointCode');
 const CodeRedemption = require('./CodeRedemption');
+const WheelSegment = require('./WheelSegment');
 const Message = require('./Message');
 const PinnedMessage = require('./PinnedMessage');
 const Partner = require('./Partner');
@@ -64,4 +65,5 @@ module.exports = {
   SpinHistory,
   PointCode,
   CodeRedemption,
+  WheelSegment,
 };
