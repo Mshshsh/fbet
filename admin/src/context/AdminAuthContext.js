@@ -36,8 +36,10 @@ export const AdminAuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const token = localStorage.getItem('fbet_admin_token');
+
   return (
-    <AdminAuthContext.Provider value={{ user, login, logout, loading }}>
+    <AdminAuthContext.Provider value={{ user, token, login, logout, loading }}>
       {children}
     </AdminAuthContext.Provider>
   );
